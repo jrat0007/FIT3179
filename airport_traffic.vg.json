@@ -1,0 +1,92 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Australian airport passenger traffic with year slider and airport group selector using CSV-based Group column",
+  "width": 1000,
+  "height": 1000,
+  "data": {
+    "url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/airport_traffic.csv"
+  },
+  "projection": {
+    "type": "mercator",
+    "center": [134, -30],
+    "scale": 1300
+  },
+  "params": [
+    {
+      "name": "year_select",
+      "value": 2015,
+      "bind": {
+        "input": "range",
+        "min": 2015,
+        "max": 2025,
+        "step": 1,
+        "name": "Select Year: "
+      }
+    },
+    {
+      "name": "airport_group",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": ["All", "Major", "Regional"],
+        "name": "Select Airport Group: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/alwaysblazing/Australia-State-TopoJson-MapChart/master/au-states-topo.json",
+        "format": {"type": "topojson", "feature": "austates"}
+      },
+      "mark": {"type": "geoshape", "fill": "#e0e0e0", "stroke": "white"}
+    },
+    {
+      "mark": {"type": "circle", "tooltip": true},
+      "encoding": {
+        "longitude": {"field": "Longitude", "type": "quantitative"},
+        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "size": {
+          "field": "Passengers",
+          "type": "quantitative",
+          "title": "Passengers (millions)",
+          "scale": {"domain": [0, 50000000], "range": [100, 10000]},
+          "legend": {
+            "format": ".1s"
+          }
+        },
+        "color": {"field": "Airport", "type": "nominal"},
+        "tooltip": [
+          {"field": "Airport", "type": "nominal"},
+          {"field": "Year", "type": "ordinal"},
+          {"field": "Passengers", "type": "quantitative", "format": ","},
+          {"field": "Group", "type": "nominal", "title": "Airport Group"}
+        ]
+      },
+      "transform": [
+        {"filter": "datum.Year == year_select"},
+        {"filter": "airport_group == 'All' || datum.Group == airport_group"}
+      ]
+    },
+    {
+      "data": {"values": [{}]},
+      "transform": [
+        {
+          "calculate": "'Australian Airport Passenger Traffic in ' + year_select + (airport_group != 'All' ? ' — ' + airport_group : '')",
+          "as": "titleText"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "top",
+        "fontSize": 20
+      },
+      "encoding": {
+        "x": {"value": 300},
+        "y": {"value": 6},
+        "text": {"field": "titleText", "type": "nominal"}
+      }
+    }
+  ]
+}
