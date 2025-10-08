@@ -1,4 +1,4 @@
-Reference area,Year,Air transport CO2 emissions
+Country,Year,Air transport CO2 emissions
 Australia,2013,15649981.49
 Australia,2014,15532003.9
 Australia,2015,15639357.75
@@ -454,3 +454,4 @@ United States,2021,137988013.7
 United States,2022,161224079.2
 United States,2023,176928311.1
 United States,2024,185703318
+
