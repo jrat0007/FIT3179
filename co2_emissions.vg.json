@@ -1,6 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Air transport CO₂ emissions with zoomable Y-axis",
+    "description": "Air transport CO₂ emissions over time by country (OECD) with legend-based highlighting, excluding US and blank countries, plus COVID-19 line.",
     "layer": [
         {
             "data": {
@@ -8,7 +8,7 @@
             },
             "transform": [
                 {
-                    "filter": "datum.Country != null && datum.Country != '' && (datum.Country == 'United States' || datum.Country == 'United Kingdom' || datum.Country == 'Australia' || datum.Country == 'Germany' || datum.Country == 'Japan' || datum.Country == 'France' || datum.Country == 'Turkey' || datum.Country == 'Korea' || datum.Country == 'Ireland' || datum.Country == 'Canada')"
+                    "filter": "datum.Country != null && datum.Country != '' && datum.Country != 'United States'"
                 }
             ],
             "params": [
@@ -21,15 +21,6 @@
                         ]
                     },
                     "bind": "legend"
-                },
-                {
-                    "name": "yZoom",
-                    "select": {
-                        "type": "interval",
-                        "encodings": [
-                            "y"
-                        ]
-                    }
                 }
             ],
             "mark": "line",
@@ -46,12 +37,7 @@
                 "y": {
                     "field": "Air transport CO2 emissions",
                     "type": "quantitative",
-                    "title": "CO₂ Emissions (tonnes)",
-                    "scale": {
-                        "domain": {
-                            "param": "yZoom"
-                        }
-                    }
+                    "title": "CO₂ Emissions (tonnes)"
                 },
                 "color": {
                     "field": "Country",
