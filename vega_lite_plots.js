@@ -27,3 +27,4 @@ var vg_6 = "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/V
 vegaEmbed("#multi_line_chart", vg_6).then(function (result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
 }).catch(console.error);
+
