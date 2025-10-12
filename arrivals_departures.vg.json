@@ -3,7 +3,7 @@
   "description": "2x4 grid of line charts with dropdown to select Attribute",
   "params": [
     {
-      "name": "AttributeSelector",
+      "name": "ArriveOrDepart",
       "value": "", 
       "bind": {
         "input": "select",
@@ -21,7 +21,7 @@
           "height": 400,
           "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/act.csv"},
           "transform": [
-            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+            {"filter": "ArriveOrDepart == '' || datum.Attribute == ArriveOrDepart"}
           ],
           "mark": {"type": "line", "point": true},
           "encoding": {
@@ -45,7 +45,7 @@
           "height": 400,
           "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/nsw.csv"},
           "transform": [
-            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+            {"filter": "ArriveOrDepart == '' || datum.Attribute == ArriveOrDepart"}
           ],
           "mark": {"type": "line", "point": true},
           "encoding": {
@@ -69,7 +69,7 @@
           "height": 400,
           "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/nt.csv"},
           "transform": [
-            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+            {"filter": "ArriveOrDepart == '' || datum.Attribute == ArriveOrDepart"}
           ],
           "mark": {"type": "line", "point": true},
           "encoding": {
@@ -93,7 +93,7 @@
           "height": 400,
           "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/qld.csv"},
           "transform": [
-            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+            {"filter": "ArriveOrDepart == '' || datum.Attribute == ArriveOrDepart"}
           ],
           "mark": {"type": "line", "point": true},
           "encoding": {
@@ -121,7 +121,7 @@
           "height": 400,
           "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/sa.csv"},
           "transform": [
-            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+            {"filter": "ArriveOrDepart == '' || datum.Attribute == ArriveOrDepart"}
           ],
           "mark": {"type": "line", "point": true},
           "encoding": {
@@ -145,7 +145,7 @@
           "height": 400,
           "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/tas.csv"},
           "transform": [
-            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+            {"filter": "ArriveOrDepart == '' || datum.Attribute == ArriveOrDepart"}
           ],
           "mark": {"type": "line", "point": true},
           "encoding": {
@@ -169,7 +169,7 @@
           "height": 400,
           "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/vic.csv"},
           "transform": [
-            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+            {"filter": "ArriveOrDepart == '' || datum.Attribute == ArriveOrDepart"}
           ],
           "mark": {"type": "line", "point": true},
           "encoding": {
@@ -193,7 +193,7 @@
           "height": 400,
           "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/wa.csv"},
           "transform": [
-            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+            {"filter": "ArriveOrDepart == '' || datum.Attribute == ArriveOrDepart"}
           ],
           "mark": {"type": "line", "point": true},
           "encoding": {
