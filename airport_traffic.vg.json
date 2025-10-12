@@ -8,7 +8,10 @@
   },
   "projection": {
     "type": "mercator",
-    "center": [134, -30],
+    "center": [
+      134,
+      -30
+    ],
     "scale": 1300
   },
   "params": [
@@ -28,7 +31,11 @@
       "value": "All",
       "bind": {
         "input": "select",
-        "options": ["All", "Major", "Regional"],
+        "options": [
+          "All",
+          "Major",
+          "Regional"
+        ],
         "name": "Select Airport Group: "
       }
     }
@@ -37,39 +44,89 @@
     {
       "data": {
         "url": "https://raw.githubusercontent.com/alwaysblazing/Australia-State-TopoJson-MapChart/master/au-states-topo.json",
-        "format": {"type": "topojson", "feature": "austates"}
+        "format": {
+          "type": "topojson",
+          "feature": "austates"
+        }
       },
-      "mark": {"type": "geoshape", "fill": "#e0e0e0", "stroke": "white"}
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e0e0e0",
+        "stroke": "white"
+      }
     },
     {
-      "mark": {"type": "circle", "tooltip": true},
+      "mark": {
+        "type": "circle",
+        "tooltip": true
+      },
       "encoding": {
-        "longitude": {"field": "Longitude", "type": "quantitative"},
-        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "longitude": {
+          "field": "Longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "Latitude",
+          "type": "quantitative"
+        },
         "size": {
           "field": "Passengers",
           "type": "quantitative",
           "title": "Passengers (millions)",
-          "scale": {"domain": [0, 50000000], "range": [100, 10000]},
+          "scale": {
+            "domain": [
+              0,
+              50000000
+            ],
+            "range": [
+              100,
+              10000
+            ]
+          },
           "legend": {
             "format": ".1s"
           }
         },
-        "color": {"field": "Airport", "type": "nominal"},
+        "color": {
+          "field": "Airport",
+          "type": "nominal"
+        },
         "tooltip": [
-          {"field": "Airport", "type": "nominal"},
-          {"field": "Year", "type": "ordinal"},
-          {"field": "Passengers", "type": "quantitative", "format": ","},
-          {"field": "Group", "type": "nominal", "title": "Airport Group"}
+          {
+            "field": "Airport",
+            "type": "nominal"
+          },
+          {
+            "field": "Year",
+            "type": "ordinal"
+          },
+          {
+            "field": "Passengers",
+            "type": "quantitative",
+            "format": ","
+          },
+          {
+            "field": "Group",
+            "type": "nominal",
+            "title": "Airport Group"
+          }
         ]
       },
       "transform": [
-        {"filter": "datum.Year == year_select"},
-        {"filter": "airport_group == 'All' || datum.Group == airport_group"}
+        {
+          "filter": "datum.Year == year_select"
+        },
+        {
+          "filter": "airport_group == 'All' || datum.Group == airport_group"
+        }
       ]
     },
     {
-      "data": {"values": [{}]},
+      "data": {
+        "values": [
+          {}
+        ]
+      },
       "transform": [
         {
           "calculate": "'Australian Airport Passenger Traffic in ' + year_select + (airport_group != 'All' ? ' — ' + airport_group : '')",
@@ -83,11 +140,17 @@
         "fontSize": 20
       },
       "encoding": {
-        "x": {"value": 300},
-        "y": {"value": 6},
-        "text": {"field": "titleText", "type": "nominal"}
+        "x": {
+          "value": 300
+        },
+        "y": {
+          "value": 6
+        },
+        "text": {
+          "field": "titleText",
+          "type": "nominal"
+        }
       }
     }
   ]
 }
-

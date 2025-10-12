@@ -1,0 +1,217 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "2x4 grid of line charts with dropdown to select Attribute",
+  "params": [
+    {
+      "name": "AttributeSelector",
+      "value": "", 
+      "bind": {
+        "input": "select",
+        "options": ["", "Total Arrivals", "Total Departures"], 
+        "labels": ["All", "Total Arrivals", "Total Departures"]
+      }
+    }
+  ],
+  "vconcat": [
+    {
+      "hconcat": [
+        {
+          "title": "ACT",
+          "width": 400,
+          "height": 400,
+          "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/act.csv"},
+          "transform": [
+            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+          ],
+          "mark": {"type": "line", "point": true},
+          "encoding": {
+            "x": {"field": "Year", "type": "temporal"},
+            "y": {"field": "Value", "type": "quantitative", "title": "Arrivals/Departures"},
+            "color": {
+              "field": "Attribute",
+              "type": "nominal",
+              "legend": {"title": "Arrivals/Departures"}
+            },
+            "tooltip": [
+              {"field": "Year", "type": "temporal"},
+              {"field": "Attribute", "type": "nominal"},
+              {"field": "Value", "type": "quantitative", "format": ","}
+            ]
+          }
+        },
+        {
+          "title": "NSW",
+          "width": 400,
+          "height": 400,
+          "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/nsw.csv"},
+          "transform": [
+            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+          ],
+          "mark": {"type": "line", "point": true},
+          "encoding": {
+            "x": {"field": "Year", "type": "temporal"},
+            "y": {"field": "Value", "type": "quantitative", "title": "Arrivals/Departures"},
+            "color": {
+              "field": "Attribute",
+              "type": "nominal",
+              "legend": {"title": "Arrivals/Departures"}
+            },
+            "tooltip": [
+              {"field": "Year", "type": "temporal"},
+              {"field": "Attribute", "type": "nominal"},
+              {"field": "Value", "type": "quantitative", "format": ","}
+            ]
+          }
+        },
+        {
+          "title": "NT",
+          "width": 400,
+          "height": 400,
+          "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/nt.csv"},
+          "transform": [
+            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+          ],
+          "mark": {"type": "line", "point": true},
+          "encoding": {
+            "x": {"field": "Year", "type": "temporal"},
+            "y": {"field": "Value", "type": "quantitative", "title": "Arrivals/Departures"},
+            "color": {
+              "field": "Attribute",
+              "type": "nominal",
+              "legend": {"title": "Arrivals/Departures"}
+            },
+            "tooltip": [
+              {"field": "Year", "type": "temporal"},
+              {"field": "Attribute", "type": "nominal"},
+              {"field": "Value", "type": "quantitative", "format": ","}
+            ]
+          }
+        },
+        {
+          "title": "QLD",
+          "width": 400,
+          "height": 400,
+          "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/qld.csv"},
+          "transform": [
+            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+          ],
+          "mark": {"type": "line", "point": true},
+          "encoding": {
+            "x": {"field": "Year", "type": "temporal"},
+            "y": {"field": "Value", "type": "quantitative", "title": "Arrivals/Departures"},
+            "color": {
+              "field": "Attribute",
+              "type": "nominal",
+              "legend": {"title": "Arrivals/Departures"}
+            },
+            "tooltip": [
+              {"field": "Year", "type": "temporal"},
+              {"field": "Attribute", "type": "nominal"},
+              {"field": "Value", "type": "quantitative", "format": ","}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "hconcat": [
+        {
+          "title": "SA",
+          "width": 400,
+          "height": 400,
+          "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/sa.csv"},
+          "transform": [
+            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+          ],
+          "mark": {"type": "line", "point": true},
+          "encoding": {
+            "x": {"field": "Year", "type": "temporal"},
+            "y": {"field": "Value", "type": "quantitative", "title": "Arrivals/Departures"},
+            "color": {
+              "field": "Attribute",
+              "type": "nominal",
+              "legend": {"title": "Arrivals/Departures"}
+            },
+            "tooltip": [
+              {"field": "Year", "type": "temporal"},
+              {"field": "Attribute", "type": "nominal"},
+              {"field": "Value", "type": "quantitative", "format": ","}
+            ]
+          }
+        },
+        {
+          "title": "TAS",
+          "width": 400,
+          "height": 400,
+          "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/tas.csv"},
+          "transform": [
+            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+          ],
+          "mark": {"type": "line", "point": true},
+          "encoding": {
+            "x": {"field": "Year", "type": "temporal"},
+            "y": {"field": "Value", "type": "quantitative", "title": "Arrivals/Departures"},
+            "color": {
+              "field": "Attribute",
+              "type": "nominal",
+              "legend": {"title": "Arrivals/Departures"}
+            },
+            "tooltip": [
+              {"field": "Year", "type": "temporal"},
+              {"field": "Attribute", "type": "nominal"},
+              {"field": "Value", "type": "quantitative", "format": ","}
+            ]
+          }
+        },
+        {
+          "title": "VIC",
+          "width": 400,
+          "height": 400,
+          "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/vic.csv"},
+          "transform": [
+            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+          ],
+          "mark": {"type": "line", "point": true},
+          "encoding": {
+            "x": {"field": "Year", "type": "temporal"},
+            "y": {"field": "Value", "type": "quantitative", "title": "Arrivals/Departures"},
+            "color": {
+              "field": "Attribute",
+              "type": "nominal",
+              "legend": {"title": "Arrivals/Departures"}
+            },
+            "tooltip": [
+              {"field": "Year", "type": "temporal"},
+              {"field": "Attribute", "type": "nominal"},
+              {"field": "Value", "type": "quantitative", "format": ","}
+            ]
+          }
+        },
+        {
+          "title": "WA",
+          "width": 400,
+          "height": 400,
+          "data": {"url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/wa.csv"},
+          "transform": [
+            {"filter": "AttributeSelector == '' || datum.Attribute == AttributeSelector"}
+          ],
+          "mark": {"type": "line", "point": true},
+          "encoding": {
+            "x": {"field": "Year", "type": "temporal"},
+            "y": {"field": "Value", "type": "quantitative", "title": "Arrivals/Departures"},
+            "color": {
+              "field": "Attribute",
+              "type": "nominal",
+              "legend": {"title": "Arrivals/Departures"}
+            },
+            "tooltip": [
+              {"field": "Year", "type": "temporal"},
+              {"field": "Attribute", "type": "nominal"},
+              {"field": "Value", "type": "quantitative", "format": ","}
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

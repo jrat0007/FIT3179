@@ -1,0 +1,218 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 1000,
+    "height": 700,
+    "spacing": 50,
+    "autosize": {
+        "type": "fit",
+        "contains": "padding"
+    },
+    "bounds": "flush",
+    "params": [
+        {
+            "name": "yearSelector",
+            "value": 2009,
+            "bind": {
+                "input": "range",
+                "min": 2009,
+                "max": 2025,
+                "step": 1,
+                "name": "Year: "
+            }
+        }
+    ],
+    "vconcat": [
+        {
+            "hconcat": [
+                {
+                    "width": 700,
+                    "height": 600,
+                    "data": {
+                        "url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/passenger_aircraft_movement.csv"
+                    },
+                    "transform": [
+                        {
+                            "fold": [
+                                "Domestic and Regional Aircraft Movement",
+                                "International Aircraft Movement"
+                            ],
+                            "as": [
+                                "Category",
+                                "Value"
+                            ]
+                        },
+                        {
+                            "filter": "datum.Year >= '2009'"
+                        }
+                    ],
+                    "layer": [
+                        {
+                            "mark": {
+                                "type": "line",
+                                "point": true
+                            },
+                            "encoding": {
+                                "x": {
+                                    "field": "Year",
+                                    "type": "ordinal",
+                                    "title": "Year"
+                                },
+                                "y": {
+                                    "field": "Value",
+                                    "type": "quantitative",
+                                    "title": "Aircraft Movements"
+                                },
+                                "color": {
+                                    "field": "Category",
+                                    "type": "nominal",
+                                    "title": "Movement Type",
+                                    "scale": {
+                                        "domain": [
+                                            "Domestic and Regional Aircraft Movement",
+                                            "International Aircraft Movement"
+                                        ],
+                                        "range": [
+                                            "#1f77b4",
+                                            "#ff7f0e"
+                                        ]
+                                    },
+                                    "legend": {
+                                        "labelLimit": 300,
+                                        "labelFontSize": 11,
+                                        "labelExpr": "replace(datum.label, 'Aircraft Movement', 'Aircraft\\nMovement')"
+                                    }
+                                },
+                                "tooltip": [
+                                    {
+                                        "field": "Year",
+                                        "type": "ordinal"
+                                    },
+                                    {
+                                        "field": "Category",
+                                        "type": "nominal"
+                                    },
+                                    {
+                                        "field": "Value",
+                                        "type": "quantitative",
+                                        "format": ","
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "mark": {
+                                "type": "rule",
+                                "color": "red",
+                                "strokeWidth": 2
+                            },
+                            "encoding": {
+                                "x": {
+                                    "field": "Year",
+                                    "type": "ordinal"
+                                },
+                                "opacity": {
+                                    "condition": {
+                                        "test": "datum.Year == yearSelector",
+                                        "value": 1
+                                    },
+                                    "value": 0
+                                }
+                            }
+                        }
+                    ],
+                    "title": {
+                        "text": "Aircraft Movements Over Time (2009–2025)",
+                        "fontSize": 18,
+                        "anchor": "middle"
+                    }
+                },
+                {
+                    "width": 300,
+                    "height": 600,
+                    "data": {
+                        "url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/passenger_aircraft_movement.csv"
+                    },
+                    "transform": [
+                        {
+                            "fold": [
+                                "Domestic and Regional Aircraft Movement",
+                                "International Aircraft Movement"
+                            ],
+                            "as": [
+                                "Category",
+                                "Value"
+                            ]
+                        },
+                        {
+                            "filter": "datum.Year == yearSelector"
+                        }
+                    ],
+                    "mark": {
+                        "type": "arc",
+                        "innerRadius": 60
+                    },
+                    "encoding": {
+                        "theta": {
+                            "field": "Value",
+                            "type": "quantitative"
+                        },
+                        "color": {
+                            "field": "Category",
+                            "type": "nominal",
+                            "title": "Movement Type",
+                            "scale": {
+                                "domain": [
+                                    "Domestic and Regional Aircraft Movement",
+                                    "International Aircraft Movement"
+                                ],
+                                "range": [
+                                    "#1f77b4",
+                                    "#ff7f0e"
+                                ]
+                            },
+                            "legend": {
+                                "labelLimit": 300,
+                                "labelFontSize": 11,
+                                "labelExpr": "replace(datum.label, 'Aircraft Movement', 'Aircraft\\nMovement')"
+                            }
+                        },
+                        "tooltip": [
+                            {
+                                "field": "Category",
+                                "type": "nominal"
+                            },
+                            {
+                                "field": "Value",
+                                "type": "quantitative",
+                                "format": ","
+                            },
+                            {
+                                "field": "Year",
+                                "type": "ordinal"
+                            }
+                        ]
+                    },
+                    "title": {
+                        "text": {
+                            "signal": "'International vs Domestic & Regional Aircraft Movements (' + yearSelector + ')'"
+                        },
+                        "fontSize": 18,
+                        "anchor": "middle"
+                    },
+                    "view": {
+                        "stroke": null
+                    }
+                }
+            ]
+        },
+        {
+            "mark": "text",
+            "height": 50,
+            "encoding": {
+                "text": {
+                    "value": ""
+                }
+            }
+        }
+    ]
+}
