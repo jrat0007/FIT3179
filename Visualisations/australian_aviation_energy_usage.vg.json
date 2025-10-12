@@ -1,0 +1,114 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+    "description": "Australian Aviation Energy Usage Over Time",
+    "width": 800,
+    "height": 800,
+    "layer": [
+        {
+            "data": {
+                "url": "https://raw.githubusercontent.com/jrat0007/FIT3179/refs/heads/main/Data/australian_aviation_energy_usage.csv"
+            },
+            "transform": [
+                {
+                    "filter": "datum.Year >= '2002-03'"
+                }
+            ],
+            "mark": {
+                "type": "line",
+                "strokeWidth": 4,
+                "point": true
+            },
+            "encoding": {
+                "x": {
+                    "field": "Year",
+                    "type": "ordinal",
+                    "title": "Financial Year",
+                    "axis": {
+                        "labelFontSize": 18,
+                        "titleFontSize": 22
+                    }
+                },
+                "y": {
+                    "field": "Energy Usage",
+                    "type": "quantitative",
+                    "title": "Energy Usage (PJ)",
+                    "axis": {
+                        "labelFontSize": 18,
+                        "titleFontSize": 22
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "Year",
+                        "type": "ordinal",
+                        "title": "Financial Year"
+                    },
+                    {
+                        "field": "Energy Usage",
+                        "type": "quantitative",
+                        "title": "Energy Usage (PJ)",
+                        "format": ".2f"
+                    }
+                ]
+            }
+        },
+        {
+            "data": {
+                "values": [
+                    {
+                        "note": "Conversion: 1 PJ = 1×10¹⁵ J"
+                    }
+                ]
+            },
+            "mark": {
+                "type": "text",
+                "align": "center",
+                "baseline": "top",
+                "fontSize": 18,
+                "fontWeight": "bold",
+                "dx": 0,
+                "dy": -30,
+                "color": "black"
+            },
+            "encoding": {
+                "x": {
+                    "field": "Year",
+                    "type": "ordinal",
+                    "aggregate": "mean"
+                },
+                "y": {
+                    "field": "Energy Usage",
+                    "type": "quantitative",
+                    "aggregate": "max"
+                },
+                "text": {
+                    "field": "note"
+                }
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align": "right",
+                "baseline": "bottom",
+                "fontSize": 20,
+                "fontStyle": "italic",
+                "color": "gray",
+                "x": 400,
+                "y": 60
+            },
+            "data": {
+                "values": [
+                    {
+                        "note": "💡 Conversion: 1 PJ = 1×10¹⁵ J"
+                    }
+                ]
+            },
+            "encoding": {
+                "text": {
+                    "field": "note"
+                }
+            }
+        }
+    ]
+}
