@@ -9,6 +9,10 @@
       "transform": [
         {
           "filter": "datum.Country != null && datum.Country != '' && datum.Country != 'United States'"
+        },
+        {
+          "calculate": "datum['Air transport CO2 emissions'] / 1000",
+          "as": "CO2_kt"
         }
       ],
       "params": [
@@ -16,9 +20,7 @@
           "name": "countryHighlight",
           "select": {
             "type": "point",
-            "fields": [
-              "Country"
-            ]
+            "fields": ["Country"]
           },
           "bind": "legend"
         }
@@ -35,9 +37,9 @@
           }
         },
         "y": {
-          "field": "Air transport CO2 emissions",
+          "field": "CO2_kt",
           "type": "quantitative",
-          "title": "CO₂ Emissions (tonnes)"
+          "title": "CO₂ Emissions (kilotonnes)"
         },
         "color": {
           "field": "Country",
@@ -52,39 +54,24 @@
           }
         },
         "opacity": {
-          "condition": {
-            "param": "countryHighlight",
-            "value": 1
-          },
+          "condition": {"param": "countryHighlight", "value": 1},
           "value": 0.2
         },
         "tooltip": [
+          {"field": "Country", "type": "nominal", "title": "Country"},
+          {"field": "Year", "type": "temporal", "title": "Year"},
           {
-            "field": "Country",
-            "type": "nominal",
-            "title": "Country"
-          },
-          {
-            "field": "Year",
-            "type": "temporal",
-            "title": "Year"
-          },
-          {
-            "field": "Air transport CO2 emissions",
+            "field": "CO2_kt",
             "type": "quantitative",
-            "title": "CO₂ Emissions (t)",
-            "format": ","
+            "title": "CO₂ Emissions (kt)",
+            "format": ",.2f"
           }
         ]
       }
     },
     {
       "data": {
-        "values": [
-          {
-            "year": "2020-01-01"
-          }
-        ]
+        "values": [{"year": "2020-01-01"}]
       },
       "mark": {
         "type": "rule",
@@ -92,20 +79,12 @@
         "strokeDash": [5, 5],
         "strokeWidth": 2
       },
-      "encoding": {
-        "x": {
-          "field": "year",
-          "type": "temporal"
-        }
-      }
+      "encoding": {"x": {"field": "year", "type": "temporal"}}
     },
     {
       "data": {
         "values": [
-          {
-            "year": "2020-01-01",
-            "label": "COVID-19 impact"
-          }
+          {"year": "2020-01-01", "label": "COVID-19 impact"}
         ]
       },
       "mark": {
@@ -119,16 +98,9 @@
         "color": "red"
       },
       "encoding": {
-        "x": {
-          "field": "year",
-          "type": "temporal"
-        },
-        "y": {
-          "datum": 0
-        },
-        "text": {
-          "field": "label"
-        }
+        "x": {"field": "year", "type": "temporal"},
+        "y": {"datum": 0},
+        "text": {"field": "label"}
       }
     },
     {
@@ -144,16 +116,10 @@
       },
       "data": {
         "values": [
-          {
-            "note": "💡 Click legend to highlight, Shift+Click to select multiple"
-          }
+          {"note": "💡 Click legend to highlight, Shift+Click to select multiple"}
         ]
       },
-      "encoding": {
-        "text": {
-          "field": "note"
-        }
-      }
+      "encoding": {"text": {"field": "note"}}
     }
   ],
   "width": 900,

@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Australian airport passenger traffic with year slider and airport group selector",
+  "description": "Australian airport passenger traffic (in millions) with year slider and airport group selector",
   "width": 1000,
   "height": 1000,
   "data": {
@@ -8,10 +8,7 @@
   },
   "projection": {
     "type": "mercator",
-    "center": [
-      134,
-      -30
-    ],
+    "center": [134, -30],
     "scale": 1300
   },
   "params": [
@@ -31,11 +28,7 @@
       "value": "All",
       "bind": {
         "input": "select",
-        "options": [
-          "All",
-          "Major",
-          "Regional"
-        ],
+        "options": ["All", "Major", "Regional"],
         "name": "Select Airport Group: "
       }
     }
@@ -44,89 +37,46 @@
     {
       "data": {
         "url": "https://raw.githubusercontent.com/alwaysblazing/Australia-State-TopoJson-MapChart/master/au-states-topo.json",
-        "format": {
-          "type": "topojson",
-          "feature": "austates"
-        }
+        "format": { "type": "topojson", "feature": "austates" }
       },
-      "mark": {
-        "type": "geoshape",
-        "fill": "#e0e0e0",
-        "stroke": "white"
-      }
+      "mark": { "type": "geoshape", "fill": "#e0e0e0", "stroke": "white" }
     },
     {
-      "mark": {
-        "type": "circle",
-        "tooltip": true
-      },
+      "transform": [
+        { "filter": "datum.Year == year_select" },
+        { "filter": "airport_group == 'All' || datum.Group == airport_group" },
+        { "calculate": "datum.Passengers / 1000000", "as": "Passengers_Millions" }
+      ],
+      "mark": { "type": "circle", "tooltip": true },
       "encoding": {
-        "longitude": {
-          "field": "Longitude",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "Latitude",
-          "type": "quantitative"
-        },
+        "longitude": { "field": "Longitude", "type": "quantitative" },
+        "latitude": { "field": "Latitude", "type": "quantitative" },
         "size": {
-          "field": "Passengers",
+          "field": "Passengers_Millions",
           "type": "quantitative",
           "title": "Passengers (millions)",
           "scale": {
-            "domain": [
-              0,
-              50000000
-            ],
-            "range": [
-              100,
-              10000
-            ]
+            "domain": [0, 50],
+            "range": [100, 10000]
           },
-          "legend": {
-            "format": ".1s"
-          }
+          "legend": { "format": ".1f" }
         },
-        "color": {
-          "field": "Airport",
-          "type": "nominal"
-        },
+        "color": { "field": "Airport", "type": "nominal" },
         "tooltip": [
+          { "field": "Airport", "type": "nominal" },
+          { "field": "Year", "type": "ordinal" },
           {
-            "field": "Airport",
-            "type": "nominal"
-          },
-          {
-            "field": "Year",
-            "type": "ordinal"
-          },
-          {
-            "field": "Passengers",
+            "field": "Passengers_Millions",
             "type": "quantitative",
-            "format": ","
+            "title": "Passengers (millions)",
+            "format": ".2f"
           },
-          {
-            "field": "Group",
-            "type": "nominal",
-            "title": "Airport Group"
-          }
+          { "field": "Group", "type": "nominal", "title": "Airport Group" }
         ]
-      },
-      "transform": [
-        {
-          "filter": "datum.Year == year_select"
-        },
-        {
-          "filter": "airport_group == 'All' || datum.Group == airport_group"
-        }
-      ]
+      }
     },
     {
-      "data": {
-        "values": [
-          {}
-        ]
-      },
+      "data": { "values": [{}] },
       "transform": [
         {
           "calculate": "'Australian Airport Passenger Traffic in ' + year_select + (airport_group != 'All' ? ' — ' + airport_group : '')",
@@ -140,16 +90,9 @@
         "fontSize": 20
       },
       "encoding": {
-        "x": {
-          "value": 300
-        },
-        "y": {
-          "value": 6
-        },
-        "text": {
-          "field": "titleText",
-          "type": "nominal"
-        }
+        "x": { "value": 300 },
+        "y": { "value": 6 },
+        "text": { "field": "titleText", "type": "nominal" }
       }
     }
   ]
