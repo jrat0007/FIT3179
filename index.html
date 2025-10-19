@@ -24,23 +24,24 @@
             color: white;
             text-align: center;
             padding: 20px;
+            font-size: 1.8rem;
         }
 
         h2.subheading,
         h2.subheading-secondary {
             text-align: center;
-            font-size: 1.3rem;
+            font-size: 1.6rem;
             color: #1e3a8a;
             margin: 20px 0 0 0;
         }
 
         main {
             display: flex;
-            justify-content: space-around;
-            align-items: flex-start;
-            gap: 20px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
             padding: 30px;
-            flex-wrap: wrap;
         }
 
         .chart-container,
@@ -55,8 +56,7 @@
         }
 
         .chart-container {
-            flex: 1 1 45%;
-            min-width: 300px;
+            width: fit-content;
         }
 
         .chart-container h3 {
@@ -67,7 +67,7 @@
 
         #line_chart_1,
         #line_chart_2 {
-            width: 900px;
+            width: 1200px;
             height: 600px;
             margin: 0 auto;
         }
@@ -91,9 +91,10 @@
         }
 
         #multi_line_chart {
-            width: 0px;
-            height: 600px;
-            margin: 0 auto 40px;
+            display: block;
+            margin: 40px auto 60px;
+            width: 1200px;
+            height: 2000px;
         }
 
         .below-text,
@@ -136,7 +137,18 @@
     <header>
         <h1>The immediate impact of COVID-19 on the aviation industry</h1>
     </header>
+
     <h2 class="subheading">CO₂ emissions of passenger air travel from OECD countries</h2>
+    <p class="below-text">
+        The OECD (Organisation for Economic Co-operation and Development) is an international organisation consisting of
+        38
+        member countries with the goal of working with "policy makers, stakeholders and citizens to establish
+        evidence-based
+        international standards and to find solutions to social, economic and environmental challenges"
+        (<a href="https://www.oecd.org/en/about.html" target="_blank"
+            rel="noopener noreferrer">https://www.oecd.org/en/about.html</a>).
+    </p>
+
     <main>
         <div class="chart-container">
             <h3>CO₂ Emissions — OECD Countries (excluding US)</h3>
@@ -147,48 +159,73 @@
             <div id="line_chart_2"></div>
         </div>
     </main>
-    <p class="below-text"> This is the CO₂ emissions as reported by members of the OECD. The United States is presented
-        on a different graph as the scale of CO₂ emissions from the United States is on a much different scale to that
-        of the other countries. We see that in all of these member countries, the emissions drop drastically after 2020,
-        corresponding to a large deficit in passenger travel after the COVID pandemic hit. It can be said that in
-        combination with efficiency improvements, the CO₂ emissions has returned to a non-COVID-19 state.</p>
+
+    <p class="below-text">
+        This is the CO₂ emissions as reported by members of the OECD. The United States is presented on a different
+        graph as
+        the scale of CO₂ emissions from the United States is on a much different scale to that of the other countries.
+        We
+        see that in all of these member countries, the emissions drop drastically after 2020, corresponding to a large
+        deficit in passenger travel after the COVID pandemic hit. It can be said that in combination with efficiency
+        improvements, the CO₂ emissions has returned to a non-COVID-19 state.
+    </p>
+
     <h2 class="subheading-secondary">Energy usage in the aviation industry in Australia</h2>
     <div class="chart-with-text">
         <div id="line_chart_3"></div>
-        <p class="chart-side-text below-text"> As we can see, energy usage in the aviation industy was steadily
-            increasing in Australia until the financial year of 2019-20. This could imply that the aviation industry was
-            growing. As we see there is a sharp drop from the financial year of 2018-19 to the financial year of
-            2020-21, this is likely due to the COVID-19 pandemic. We can see that by the financial year of 2023-2024,
-            the Australian aviation industry has mostly recovered. </p>
+        <p class="chart-side-text below-text">
+            As we can see, energy usage in the aviation industy was steadily increasing in Australia until the financial
+            year
+            of 2019-20. This could imply that the aviation industry was growing. As we see there is a sharp drop from
+            the
+            financial year of 2018-19 to the financial year of 2020-21, this is likely due to the COVID-19 pandemic. We
+            can
+            see that by the financial year of 2023-2024, the Australian aviation industry has mostly recovered.
+        </p>
     </div>
+
     <h2 class="subheading-secondary">Australian airport passenger traffic</h2>
     <div class="map-with-text">
-        <p class="map-side-text below-text"> As we can see from this proportional symbol map, the major airports got
-            affected a lot more than the regional airports by the COVID pandemic. This would make sense as non-passenger
-            aviation isn't affected as much by pandemic and epidemics as passenger aviation. It should be noted that the
-            data for 2025 is up to June and as such is not complete. Comparing the 2024 data to pre-COVID-19 data, we
-            can see that airport passenger traffic has mostly returned to its regular state.</p>
+        <p class="map-side-text below-text">
+            As we can see from this proportional symbol map, the major airports got affected a lot more than the
+            regional
+            airports by the COVID pandemic. This would make sense as non-passenger aviation isn't affected as much by
+            pandemic
+            and epidemics as passenger aviation. It should be noted that the data for 2025 is up to June and as such is
+            not
+            complete. Comparing the 2024 data to pre-COVID-19 data, we can see that airport passenger traffic has mostly
+            returned to its regular state.
+        </p>
         <div id="proportional_symbol_map"></div>
     </div>
+
     <h2 class="subheading-secondary">Australian Passenger Aircraft Movements</h2>
     <div id="pie_chart_line_chart"></div>
-    <p class="below-text"> Here we see that the domestic and regional aircraft movements has always been much greater
-        than the international aircraft movements. Both see a drop in 2020, but domestic and regional aircraft movement
-        sees a much larger drop based on magnitude. However, international aircraft movements sees a larger proportional
-        reduction than domestic and regional aircraft movements. It should be noted that the data for 2025 is up to June
-        and as such is not complete. Comparing the 2024 data to pre-COVID-19 data, we can see that passenger aircraft
-        movements in Australia has returned to normal for international flights. For domestic and regional flights, it
-        is still somewhat recovering, however it is almost fully recovered.</p>
+    <p class="below-text">
+        Here we see that the domestic and regional aircraft movements has always been much greater than the
+        international
+        aircraft movements. Both see a drop in 2020, but domestic and regional aircraft movement sees a much larger drop
+        based on magnitude. However, international aircraft movements sees a larger proportional reduction than domestic
+        and
+        regional aircraft movements. It should be noted that the data for 2025 is up to June and as such is not
+        complete.
+        Comparing the 2024 data to pre-COVID-19 data, we can see that passenger aircraft movements in Australia has
+        returned
+        to normal for international flights. For domestic and regional flights, it is still somewhat recovering, however
+        it
+        is almost fully recovered.
+    </p>
 
-    <!-- New Multi-Line Chart Section -->
     <h2 class="subheading-secondary">Overseas arrivals and departures by state</h2>
-    <div class="chart-container">
-        <div id="multi_line_chart"></div>
-    </div>
+    <div id="multi_line_chart"></div>
     <p class="below-text">We see that overseas arrivals and departures for each of the Australian states follow a very
-        similar trend, with a sharp drop in 2020 where the COVID-19 pandemic started having its impact on the aviation
-        industry. We also see that most of the states have very similar arrival and departure numbers, with the
-        exception of NSW and TAS.</p>
+        similar trend, with
+        a
+        sharp drop in 2020 where the COVID-19 pandemic started having its impact on the aviation industry. We also see
+        that
+        most of the states have very similar arrival and departure numbers, with the exception of NSW and TAS.
+    </p>
+
 </body>
 
 </html>
